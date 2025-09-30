@@ -1,12 +1,13 @@
 "use client";
-
+import { MagicCard } from "@/components/ui/magic-card";
+import { useTheme } from "next-themes";
 import { useState } from "react";
-import SteamForm from "./components/SteamForm";
-import StatusMessage from "./components/StatusMessage";
-import GameList from "./components/GameList";
+import SteamForm from "../components/SteamForm";
+import StatusMessage from "../components/StatusMessage";
+import GameList from "../components/game-list";
 import { SteamApiResponse } from "./types/steam";
-
 export default function Home() {
+  const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [gameData, setGameData] = useState<SteamApiResponse | null>(null);
@@ -54,10 +55,11 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md text-gray-900">
-      <h1 className="text-2xl font-bold mb-6 text-center text-gray-900">
-        Steam Picture
-      </h1>
+    <MagicCard
+      gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+      className="max-w-2xl mx-auto mt-8 p-6 rounded-lg"
+    >
+      <h1 className="text-2xl font-bold mb-6 text-center">Steam Picture</h1>
 
       <SteamForm onSubmit={handleFormSubmit} loading={loading} />
 
@@ -74,6 +76,6 @@ export default function Home() {
           totalCount={gameData.response.games.length}
         />
       )}
-    </div>
+    </MagicCard>
   );
 }

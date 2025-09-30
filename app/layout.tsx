@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import { ThemeProvider } from "@/components/theme-provider";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
+import { html } from "motion/react-client";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,11 +25,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
       >
-        {children}
+        {/* <ThemeProvider
+        > */}
+          <FlickeringGrid
+            className="w-screen h-screen fixed top-0 left-0 -z-10"
+            squareSize={4}
+            gridGap={5}
+            color="#6B7280"
+            maxOpacity={0.5}
+            flickerChance={0.1}
+          ></FlickeringGrid>
+          <div className="w-screen h-screen overflow-auto px-4 sm:px-6 lg:px-8 py-8">
+            {children}
+          </div>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

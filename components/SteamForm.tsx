@@ -1,12 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
 interface SteamFormProps {
   onSubmit: (apiKey: string, steamId: string) => void;
   loading: boolean;
 }
-
+import { RainbowButton } from "@/components/ui/rainbow-button"
 export default function SteamForm({ onSubmit, loading }: SteamFormProps) {
   const [apiKey, setApiKey] = useState('');
   const [steamId, setSteamId] = useState('');
@@ -76,13 +75,13 @@ export default function SteamForm({ onSubmit, loading }: SteamFormProps) {
         />
       </div>
 
-      <button
+      <RainbowButton
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="shadow-2xl block mx-auto"
         disabled={loading}
       >
         {loading ? "获取中..." : "获取 Steam 数据"}
-      </button>
+      </RainbowButton>
     </form>
   );
 }
