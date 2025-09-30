@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
-import { html } from "motion/react-client";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
